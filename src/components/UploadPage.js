@@ -2,17 +2,38 @@ import React, { useState } from 'react'
 import {storage, db} from "../firebase/firebase"
 
 export default function UploadPage() {
+  // handle images
   const allInputs = {imgUrl: ''};
   const [imageAsFile, setImageAsFile] = useState('');
   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
+  // handle text
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+
+  // retrieve data
+  const [posts, setPosts] = useState([]);
 
   console.log(imageAsFile)
   const handleImageAsFile = (event) => {
     const image = event.target.files[0];
     setImageAsFile(imageFile => image);
+  }
+
+  const getPosts = async (event) => {
+    event.preventDefault();
+    // console.log('get posts')
+    // select the 'posts' collection
+    const response = db.collection('posts');
+    // gets the data from posts collection
+    const data = await response.get();
+
+    data.docs.forEach(post => {
+      setPosts([...posts, post.data()])
+      console.log(post.data())
+    })
+
+    // console.log(data.docs)
   }
 
   const handleFirebaseUpload = (event) => {
@@ -71,6 +92,15 @@ export default function UploadPage() {
         <input type='text' onChange={(event) => setDesc(event.target.value)} name='desc' placeholder='Enter a description' value={desc} />
       </form>
       <img src={imageAsUrl.imgUrl} alt='image' />
+      <button onClick={getPosts}>Get posts</button>
+      {
+        posts ? posts.map(post => (
+          <div>
+            <h1>{post.title}</h1>
+          </div>
+        ))
+        : null
+      }
     </div>
   )
 }
