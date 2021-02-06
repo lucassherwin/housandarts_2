@@ -14,7 +14,6 @@ export default function UploadPage() {
   // retrieve data
   const [posts, setPosts] = useState([]);
 
-  console.log(imageAsFile)
   const handleImageAsFile = (event) => {
     const image = event.target.files[0];
     setImageAsFile(imageFile => image);
@@ -30,13 +29,13 @@ export default function UploadPage() {
 
     data.docs.forEach(post => {
       setPosts([...posts, post.data()])
-      console.log(post.data())
+      console.log(posts)
     })
 
     // console.log(data.docs)
   }
 
-  const handleFirebaseUpload = (event) => {
+  const uploadImage = (event) => {
     event.preventDefault();
     if(imageAsFile === '' )
     {
@@ -44,6 +43,10 @@ export default function UploadPage() {
     }
 
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+    
+    db.settings({
+      timestampsInSnapshots: true
+    });
 
     uploadTask.on('state_changed', 
     (snapShot) => {
@@ -57,46 +60,40 @@ export default function UploadPage() {
       // gets the download url then sets the image from firebase as the value for the imgUrl key:
       storage.ref('images').child(imageAsFile.name).getDownloadURL()
         .then(fireBaseUrl => {
+          // console.log('test', fireBaseUrl) this is the img url
           setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
+        
+          const postRef = db.collection('posts').add({
+            title: title,
+            description: desc,
+            url: fireBaseUrl
+          })
+        })
       })
-    })
   }
 
-  const handleUpload = (event) => {
-    event.preventDefault();
+  // const handleUpload = async (event) => {
+  //   event.preventDefault();
 
-    // handleFirebaseUpload();
-    
-    console.log(title, desc);
-
-    db.settings({
-      timestampsInSnapshots: true
-    });
-
-    const postRef = db.collection('posts').add({
-      title: title,
-      description: desc
-    })
-
-    // get image url from handleFirebaseUpload
-
-    // take that image url and make a new post in firestore with image url, title, description
-  }
+  //   let img_url = await uploadImage();
+  //   // console.log(img_url);
+  // }
 
   return (
     <div>
-      <form onSubmit={handleUpload}>
+      <form onSubmit={uploadImage}>
         <input type='file' onChange={handleImageAsFile} />
-        <button>Upload</button>
         <input type='text' onChange={(event) => setTitle(event.target.value)} name='title' placeholder='Enter a title' value={title}  />
         <input type='text' onChange={(event) => setDesc(event.target.value)} name='desc' placeholder='Enter a description' value={desc} />
+        <button>Upload</button>
       </form>
-      <img src={imageAsUrl.imgUrl} alt='image' />
       <button onClick={getPosts}>Get posts</button>
       {
         posts ? posts.map(post => (
-          <div>
+          <div key={post.title}>
             <h1>{post.title}</h1>
+            <p>{post.description}</p>
+            <img src={post.url} alt={post.title} />
           </div>
         ))
         : null
@@ -104,3 +101,5 @@ export default function UploadPage() {
     </div>
   )
 }
+
+// <img src={imageAsUrl.imgUrl} alt='image' />
