@@ -12,28 +12,27 @@ export default function UploadPage() {
   const [desc, setDesc] = useState('');
 
   // retrieve data
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
 
   const handleImageAsFile = (event) => {
     const image = event.target.files[0];
     setImageAsFile(imageFile => image);
   }
 
-  const getPosts = async (event) => {
-    event.preventDefault();
-    // console.log('get posts')
-    // select the 'posts' collection
-    const response = db.collection('posts');
-    // gets the data from posts collection
-    const data = await response.get();
-
-    data.docs.forEach(post => {
-      setPosts([...posts, post.data()])
-      console.log(posts)
-    })
-
-    // console.log(data.docs)
-  }
+  // const getPosts = async (event) => {
+  //   event.preventDefault();
+  //   // console.log('get posts')
+  //   // select the 'posts' collection
+  //   // db.settings({ timestampsInSnapshots: true});
+  //   // const response = db.collection('posts');
+  //   db.collection('posts').get().then((snapshot) => {
+  //     snapshot.docs.forEach(doc => {
+  //       let items = doc.data();
+  //       setPosts(prevState => [...prevState, items]);
+  //       console.log(items, posts);
+  //     })
+  //   })
+  // }
 
   const uploadImage = (event) => {
     event.preventDefault();
@@ -44,9 +43,9 @@ export default function UploadPage() {
 
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
     
-    db.settings({
-      timestampsInSnapshots: true
-    });
+    // db.settings({
+    //   timestampsInSnapshots: true
+    // });
 
     uploadTask.on('state_changed', 
     (snapShot) => {
@@ -63,7 +62,7 @@ export default function UploadPage() {
           // console.log('test', fireBaseUrl) this is the img url
           setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
         
-          const postRef = db.collection('posts').add({
+          db.collection('posts').add({
             title: title,
             description: desc,
             url: fireBaseUrl
@@ -71,13 +70,6 @@ export default function UploadPage() {
         })
       })
   }
-
-  // const handleUpload = async (event) => {
-  //   event.preventDefault();
-
-  //   let img_url = await uploadImage();
-  //   // console.log(img_url);
-  // }
 
   return (
     <div>
@@ -87,19 +79,9 @@ export default function UploadPage() {
         <input type='text' onChange={(event) => setDesc(event.target.value)} name='desc' placeholder='Enter a description' value={desc} />
         <button>Upload</button>
       </form>
-      <button onClick={getPosts}>Get posts</button>
-      {
-        posts ? posts.map(post => (
-          <div key={post.title}>
-            <h1>{post.title}</h1>
-            <p>{post.description}</p>
-            <img src={post.url} alt={post.title} />
-          </div>
-        ))
-        : null
-      }
     </div>
   )
 }
 
 // <img src={imageAsUrl.imgUrl} alt='image' />
+// <button onClick={getPosts}>Get posts</button>
