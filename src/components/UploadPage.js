@@ -14,7 +14,8 @@ export default function UploadPage() {
 
   // handle text
   const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [description, setDescription] = useState('');
+  const [tag, setTag] = useState('poster'); // default is poster
 
   const uploadImage = (event) => {
     event.preventDefault();
@@ -41,9 +42,10 @@ export default function UploadPage() {
           setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
         
           db.collection('posts').add({
-            title: title,
-            description: desc,
-            url: fireBaseUrl
+            title,
+            description,
+            fireBaseUrl,
+            tag
           })
         })
       })
@@ -54,7 +56,14 @@ export default function UploadPage() {
       <form onSubmit={uploadImage}>
         <input type='file' onChange={handleImageAsFile} />
         <input type='text' onChange={(event) => setTitle(event.target.value)} name='title' placeholder='Enter a title' value={title}  />
-        <input type='text' onChange={(event) => setDesc(event.target.value)} name='desc' placeholder='Enter a description' value={desc} />
+        <input type='text' onChange={(event) => setDescription(event.target.value)} name='description' placeholder='Enter a description' value={description} />
+        <select name='tags' value={tag} onChange={(event) => setTag(event.target.value)}>
+          <option value='poster'>poster</option>
+          <option value='packaging'>packaging</option>
+          <option value='pattern'>pattern</option>
+          <option value='apparel'>apparel</option>
+          <option value='poster'>poster</option>
+        </select>
         <button>Upload</button>
       </form>
     </div>
