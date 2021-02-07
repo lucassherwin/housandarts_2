@@ -14,6 +14,10 @@ export default function Navbar() {
 return (
     <div className='navbar'>
       <NavLink to="/" exact style={link} activeStyle={{background: 'darkblue'}}>Home</NavLink>
+      <NavLink to='/posters' exact style={link} activeStyle={{background: 'darkblue'}}>Posters</NavLink>
+      <NavLink to='/patterns' exact style={link} activeStyle={{background: 'darkblue'}}>Patterns</NavLink>
+      <NavLink to='/apparel' exact style={link} activeStyle={{background: 'darkblue'}}>Apparel</NavLink>
+      <NavLink to='/packaging' exact style={link} activeStyle={{background: 'darkblue'}}>Packaging</NavLink>
       <NavLink to='/upload' exact style={link} activeStyle={{background: 'darkblue'}}>Upload</NavLink>
     </div>
   )

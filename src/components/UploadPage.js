@@ -62,7 +62,6 @@ export default function UploadPage() {
           <option value='packaging'>packaging</option>
           <option value='pattern'>pattern</option>
           <option value='apparel'>apparel</option>
-          <option value='poster'>poster</option>
         </select>
         <button>Upload</button>
       </form>

@@ -8,7 +8,7 @@ export default function Home({ posts }) {
           <div key={post.title}>
             <h1>{post.title}</h1>
             <p>{post.description}</p>
-            <img src={post.url} alt={post.title} />
+            <img src={post.fireBaseUrl} alt={post.title} />
           </div>
         ))
         : null
