@@ -6,33 +6,15 @@ export default function UploadPage() {
   const allInputs = {imgUrl: ''};
   const [imageAsFile, setImageAsFile] = useState('');
   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
-
-  // handle text
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
-
-  // retrieve data
-  // const [posts, setPosts] = useState([]);
-
+  
   const handleImageAsFile = (event) => {
     const image = event.target.files[0];
     setImageAsFile(imageFile => image);
   }
 
-  // const getPosts = async (event) => {
-  //   event.preventDefault();
-  //   // console.log('get posts')
-  //   // select the 'posts' collection
-  //   // db.settings({ timestampsInSnapshots: true});
-  //   // const response = db.collection('posts');
-  //   db.collection('posts').get().then((snapshot) => {
-  //     snapshot.docs.forEach(doc => {
-  //       let items = doc.data();
-  //       setPosts(prevState => [...prevState, items]);
-  //       console.log(items, posts);
-  //     })
-  //   })
-  // }
+  // handle text
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
 
   const uploadImage = (event) => {
     event.preventDefault();
@@ -42,10 +24,6 @@ export default function UploadPage() {
     }
 
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
-    
-    // db.settings({
-    //   timestampsInSnapshots: true
-    // });
 
     uploadTask.on('state_changed', 
     (snapShot) => {
@@ -82,6 +60,3 @@ export default function UploadPage() {
     </div>
   )
 }
-
-// <img src={imageAsUrl.imgUrl} alt='image' />
-// <button onClick={getPosts}>Get posts</button>
