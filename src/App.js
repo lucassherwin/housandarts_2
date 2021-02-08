@@ -9,6 +9,7 @@ import Posters from './components/Posters';
 import Patterns from './components/Patterns';
 import Apparel from './components/Apparel';
 import Packaging from './components/Packaging';
+import './App.css';
 
 export default function App() {
   const [posts, setPosts] = useState([]); // all
