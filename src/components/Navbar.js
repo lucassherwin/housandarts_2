@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function Navbar() {
   const link = {
@@ -11,14 +12,22 @@ export default function Navbar() {
     color: 'white',
 }
 
+const home = {
+  fontWeight: 'bold'
+}
+
+const Nav = styled.nav`
+
+`;
+
 return (
     <div className='navbar'>
-      <NavLink to="/" exact style={link} activeStyle={{background: 'darkblue'}}>Home</NavLink>
-      <NavLink to='/posters' exact style={link} activeStyle={{background: 'darkblue'}}>Posters</NavLink>
-      <NavLink to='/patterns' exact style={link} activeStyle={{background: 'darkblue'}}>Patterns</NavLink>
-      <NavLink to='/apparel' exact style={link} activeStyle={{background: 'darkblue'}}>Apparel</NavLink>
-      <NavLink to='/packaging' exact style={link} activeStyle={{background: 'darkblue'}}>Packaging</NavLink>
-      <NavLink to='/upload' exact style={link} activeStyle={{background: 'darkblue'}}>Upload</NavLink>
+      <nav><NavLink to="/" exact activeStyle={{background: 'darkblue'}}>HOUSANDARTS</NavLink></nav>
+      <nav><NavLink to='/posters' exact activeStyle={{background: 'darkblue'}}>Posters</NavLink></nav>
+      <nav><NavLink to='/patterns' exact activeStyle={{background: 'darkblue'}}>Patterns</NavLink></nav>
+      <nav><NavLink to='/apparel' exact activeStyle={{background: 'darkblue'}}>Apparel</NavLink></nav>
+      <nav><NavLink to='/packaging' exact activeStyle={{background: 'darkblue'}}>Packaging</NavLink></nav>
+      <nav><NavLink to='/upload' exact activeStyle={{background: 'darkblue'}}>Upload</NavLink></nav>
     </div>
   )
 }

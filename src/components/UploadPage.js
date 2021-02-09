@@ -44,7 +44,7 @@ export default function UploadPage() {
           db.collection('posts').add({
             title,
             description,
-            fireBaseUrl,
+            src: fireBaseUrl,
             tag
           })
         })

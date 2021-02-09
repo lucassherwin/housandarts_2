@@ -6,7 +6,7 @@ export default function Posters({ posters }) {
       {
         posters.map(item => (
           <div key={item.title}>
-            <img src={item.fireBaseUrl} alt={item.title} />
+            <img src={item.src} alt={item.title} />
           </div>
         ))
       }

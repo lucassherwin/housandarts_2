@@ -6,35 +6,45 @@ export default function Home({ posts }) {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
-    /* flex-flow: row wrap; */
+    flex-flow: row wrap;
     /* align-content: stretch; */
+    justify-content: center;
+    align-items: center;
   `;
 
   const Item = styled.div`
-    /* flex-grow: 2; */
-    flex: 25%;
-    max-width: 25%;
+
   `;
 
   const Image = styled.img`
-    margin-top: 8px;
-    vertical-align: middle;
     width: 100%;
+    height: 200px;
   `;
 
   return (
-    <Container>
-      {
-        posts ? posts.map(post => (
-          <Item key={post.title}>
-            <Image src={post.fireBaseUrl} alt={post.title} />
-          </Item>
-        ))
-        : null
-      }
-    </Container>
+    <div>
+      <Container>
+        {
+          posts ? posts.map(post => (
+            <Item key={post.title}>
+              <Image src={post.src} alt={post.title} />
+            </Item>
+          ))
+          : null
+        }
+      </Container>
+    </div>
   )
 }
 
 // <h1>{post.title}</h1>
 // <p>{post.description}</p>
+      // <Masonry className='my-masonry-grid' columnClassName='my-masonry-grid_column'>
+      //   {
+      //     posts ? posts.map(post => (
+      //       <img src={post.src} alt={post.title} height='200px' />
+      //     ))
+      //     : null
+      //   }
+      // </Masonry>
+

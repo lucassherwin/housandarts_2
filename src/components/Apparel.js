@@ -6,7 +6,7 @@ export default function Apparel({ apparel }) {
       {
         apparel.map(item => (
           <div>
-            <img src={item.fireBaseUrl} alt={item.title} />
+            <img src={item.src} alt={item.title} />
           </div>
         ))
       }
