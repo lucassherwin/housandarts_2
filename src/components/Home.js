@@ -23,22 +23,14 @@ export default function Home({ posts }) {
 
   return (
     <div>
-      <Container>
-        {
-          posts ? posts.map(post => (
-            <Item key={post.title}>
-              <Image src={post.src} alt={post.title} />
-            </Item>
-          ))
-          : null
-        }
-      </Container>
     </div>
   )
 }
 
 // <h1>{post.title}</h1>
 // <p>{post.description}</p>
+      // this doesnt work because i have to pass in an array of jsx elements
+      // this will be created in app
       // <Masonry className='my-masonry-grid' columnClassName='my-masonry-grid_column'>
       //   {
       //     posts ? posts.map(post => (
@@ -48,3 +40,14 @@ export default function Home({ posts }) {
       //   }
       // </Masonry>
 
+
+      // <Container>
+      //   {
+      //     posts ? posts.map(post => (
+      //       <Item key={post.title}>
+      //         <Image src={post.src} alt={post.title} />
+      //       </Item>
+      //     ))
+      //     : null
+      //   }
+      // </Container>

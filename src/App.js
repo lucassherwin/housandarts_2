@@ -21,6 +21,11 @@ export default function App() {
   const [apparel, setApparel] = useState([]);
 
 
+    // TODDO:
+    // in sorting create img element for each image and save that
+    // pass an array of those elements into the thing
+
+
   useEffect(() => {
     db.collection('posts').get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
