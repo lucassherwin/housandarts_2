@@ -10,24 +10,26 @@ export default function Navbar() {
     background: 'blue',
     textDecoration: 'none',
     color: 'white',
-}
+  }
 
-const home = {
-  fontWeight: 'bold'
-}
+  const NavContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+  `;
 
-const Nav = styled.nav`
-
-`;
+  // TODO: put spacing between each item
+  const Nav = styled.nav`
+    padding-right: 5px; 
+  `;
 
 return (
-    <div className='navbar'>
+    <NavContainer>
       <nav><NavLink to="/" exact activeStyle={{background: 'darkblue'}}>HOUSANDARTS</NavLink></nav>
       <nav><NavLink to='/posters' exact activeStyle={{background: 'darkblue'}}>Posters</NavLink></nav>
       <nav><NavLink to='/patterns' exact activeStyle={{background: 'darkblue'}}>Patterns</NavLink></nav>
       <nav><NavLink to='/apparel' exact activeStyle={{background: 'darkblue'}}>Apparel</NavLink></nav>
       <nav><NavLink to='/packaging' exact activeStyle={{background: 'darkblue'}}>Packaging</NavLink></nav>
       <nav><NavLink to='/upload' exact activeStyle={{background: 'darkblue'}}>Upload</NavLink></nav>
-    </div>
+    </NavContainer>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'st.yled-components';
 
 export default function Home({ posts }) {
   const Container = styled.div`
