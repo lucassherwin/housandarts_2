@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function Navbar() {
   const link = {
@@ -9,12 +10,26 @@ export default function Navbar() {
     background: 'blue',
     textDecoration: 'none',
     color: 'white',
-}
+  }
+
+  const NavContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+  `;
+
+  // TODO: put spacing between each item
+  const Nav = styled.nav`
+    padding-right: 5px; 
+  `;
 
 return (
-    <div className='navbar'>
-      <NavLink to="/" exact style={link} activeStyle={{background: 'darkblue'}}>Home</NavLink>
-      <NavLink to='/upload' exact style={link} activeStyle={{background: 'darkblue'}}>Upload</NavLink>
-    </div>
+    <NavContainer>
+      <nav><NavLink to="/" exact activeStyle={{background: 'darkblue'}}>HOUSANDARTS</NavLink></nav>
+      <nav><NavLink to='/posters' exact activeStyle={{background: 'darkblue'}}>Posters</NavLink></nav>
+      <nav><NavLink to='/patterns' exact activeStyle={{background: 'darkblue'}}>Patterns</NavLink></nav>
+      <nav><NavLink to='/apparel' exact activeStyle={{background: 'darkblue'}}>Apparel</NavLink></nav>
+      <nav><NavLink to='/packaging' exact activeStyle={{background: 'darkblue'}}>Packaging</NavLink></nav>
+      <nav><NavLink to='/upload' exact activeStyle={{background: 'darkblue'}}>Upload</NavLink></nav>
+    </NavContainer>
   )
 }
