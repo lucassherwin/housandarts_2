@@ -19,17 +19,18 @@ export default function Navbar() {
 
   // TODO: put spacing between each item
   const Nav = styled.nav`
-    padding-right: 5px; 
+    padding: 5px; 
+    textDecoration: none;
   `;
 
 return (
     <NavContainer>
-      <nav><NavLink to="/" exact activeStyle={{background: 'darkblue'}}>HOUSANDARTS</NavLink></nav>
-      <nav><NavLink to='/posters' exact activeStyle={{background: 'darkblue'}}>Posters</NavLink></nav>
-      <nav><NavLink to='/patterns' exact activeStyle={{background: 'darkblue'}}>Patterns</NavLink></nav>
-      <nav><NavLink to='/apparel' exact activeStyle={{background: 'darkblue'}}>Apparel</NavLink></nav>
-      <nav><NavLink to='/packaging' exact activeStyle={{background: 'darkblue'}}>Packaging</NavLink></nav>
-      <nav><NavLink to='/upload' exact activeStyle={{background: 'darkblue'}}>Upload</NavLink></nav>
+      <Nav><NavLink to="/" exact>HOUSANDARTS</NavLink></Nav>
+      <Nav><NavLink to='/posters' exact activeStyle={{background: 'darkblue'}}>Posters</NavLink></Nav>
+      <Nav><NavLink to='/patterns' exact activeStyle={{background: 'darkblue'}}>Patterns</NavLink></Nav>
+      <Nav><NavLink to='/apparel' exact activeStyle={{background: 'darkblue'}}>Apparel</NavLink></Nav>
+      <Nav><NavLink to='/packaging' exact activeStyle={{background: 'darkblue'}}>Packaging</NavLink></Nav>
+      {/* <Nav><NavLink to='/upload' exact activeStyle={{background: 'darkblue'}}>Upload</NavLink></Nav> */}
     </NavContainer>
   )
 }

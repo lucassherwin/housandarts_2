@@ -49,13 +49,9 @@ export default function App() {
     })
   }, [])
 
-  // comment
-  
-
   return (
     <div>
       <Navbar />
-      <h1>react app</h1>
       <Switch>
         <Route exact path='/'>
           <Home posts={posts} />
