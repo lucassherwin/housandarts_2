@@ -4,11 +4,12 @@ import UploadPage from './components/UploadPage';
 import { Route, Switch } from 'react-router-dom';
 import { db } from './firebase/firebase';
 import Navbar from './components/Navbar.js';
-import Home from './components/Home';
-import Posters from './components/Posters';
-import Patterns from './components/Patterns';
-import Apparel from './components/Apparel';
-import Packaging from './components/Packaging';
+import Home from './components/Home.js';
+import Posters from './components/Posters.js';
+import Patterns from './components/Patterns.js';
+import Apparel from './components/Apparel.js';
+import Packaging from './components/Packaging.js';
+import PostPage from './components/PostPage.js';
 import './App.css';
 
 export default function App() {
@@ -20,30 +21,35 @@ export default function App() {
   const [patterns, setPatterns] = useState([]);
   const [apparel, setApparel] = useState([]);
 
+  const [currentPost, setCurrentPost] = useState(null);
+
 
   useEffect(() => {
     db.collection('posts').get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
-        let item = doc.data();
-        setPosts(prevState => [...prevState, item]);
-        console.log(item)
+        let post = doc.data();
+        // create an image
+        // let img = <img src={item.src} alt={item.title} />;
+        setPosts(prevState => [...prevState, post]);
+        // save that image in state array to pass to Masonry
+        // setPosts(prevState => [...prevState, img]);
         // sort
-        switch(item.tag)
+        switch(post.tag)
         {
           case 'poster':
-            setPosters(prevState => [...prevState, item]);
+            setPosters(prevState => [...prevState, post]);
             break;
           case 'packaging':
-            setPackaging(prevState => [...prevState, item]);
+            setPackaging(prevState => [...prevState, post]);
             break;
           case 'pattern':
-            setPatterns(prevState => [...prevState, item]);
+            setPatterns(prevState => [...prevState, post]);
             break;
           case 'apparel':
-            setApparel(prevState => [...prevState, item]);
+            setApparel(prevState => [...prevState, post]);
             break;
           default:
-            console.log(item, 'this one broke');
+            console.log(post, 'this one broke');
         }
       })
     })
@@ -54,7 +60,7 @@ export default function App() {
       <Navbar />
       <Switch>
         <Route exact path='/'>
-          <Home posts={posts} />
+          <Home posts={posts} setCurrentPost={setCurrentPost} />
         </Route>
         <Route exact path='/posters'>
           <Posters posters={posters} />
@@ -70,6 +76,9 @@ export default function App() {
         </Route>
         <Route exact path='/upload'>
           <UploadPage />
+        </Route>
+        <Route exact path='/:title'>
+          <PostPage currentPost={currentPost} />
         </Route>
       </Switch>
     </div>
