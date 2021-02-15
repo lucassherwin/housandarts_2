@@ -22,12 +22,15 @@ export default function Home({ posts, setCurrentPost }) {
     height: 200px;
   `;
 
+
+  // currently using useHistory
+  // could also use a NavLink
   let history = useHistory();
   const handleClick = (post) => {
     console.log('click', post);
     setCurrentPost(post);
 
-    history.push('/${post.title}');
+    history.push(`/${post.title}`);
   }
 
   return (
