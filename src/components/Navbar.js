@@ -15,21 +15,25 @@ export default function Navbar() {
   const NavContainer = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
   `;
 
-  // TODO: put spacing between each item
-  const Nav = styled.nav`
-    padding: 5px; 
-    textDecoration: none;
+  const Nav = styled(NavLink)`
+    padding: 8px; 
+    text-decoration: none;
+    color: 'grey';
   `;
+
+  // TODO: Remove colors from links
+  // They should be black when active gray otherwise
 
 return (
     <NavContainer>
-      <Nav><NavLink to="/" exact>HOUSANDARTS</NavLink></Nav>
-      <Nav><NavLink to='/posters' exact activeStyle={{background: 'darkblue'}}>Posters</NavLink></Nav>
-      <Nav><NavLink to='/patterns' exact activeStyle={{background: 'darkblue'}}>Patterns</NavLink></Nav>
-      <Nav><NavLink to='/apparel' exact activeStyle={{background: 'darkblue'}}>Apparel</NavLink></Nav>
-      <Nav><NavLink to='/packaging' exact activeStyle={{background: 'darkblue'}}>Packaging</NavLink></Nav>
+      <Nav style={{fontSize: 40}} activeStyle={{color: 'black'}} to="/" exact style={{color: 'black'}}><p>HOUSANDARTS</p></Nav>
+      <Nav to='/posters' exact activeStyle={{color: 'black'}} style={{color: 'gray'}}><p >Posters</p></Nav>
+      <Nav to='/patterns' exact activeStyle={{color: 'black'}} style={{color: 'gray'}}><p>Patterns</p></Nav>
+      <Nav to='/apparel' exact activeStyle={{color: 'black'}} style={{color: 'gray'}}><p>Apparel</p></Nav>
+      <Nav to='/packaging' exact activeStyle={{color: 'black'}} style={{color: 'gray'}}><p>Packaging</p></Nav>
       {/* <Nav><NavLink to='/upload' exact activeStyle={{background: 'darkblue'}}>Upload</NavLink></Nav> */}
     </NavContainer>
   )
