@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Masonry from 'react-masonry-css';
 import { useHistory } from "react-router-dom";
 
 export default function Home({ posts, setCurrentPost }) {
