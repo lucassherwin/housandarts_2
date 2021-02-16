@@ -1,26 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
+import { Container, Post, Image } from './SyledComonents';
 
 export default function Home({ posts, setCurrentPost }) {
-  const Container = styled.div`
-    display: flex;
-    ${'' /* flex-wrap: wrap; */}
-    ${'' /* padding: 0 4px; */}
-    flex-flow: row wrap;
-    /* align-items: stretch; */
-    justify-content: center;
-    align-items: center;
-  `;
+  // const Container = styled.div`
+  //   display: flex;
+  //   flex-flow: row wrap;
+  //   justify-content: center;
+  //   align-items: center;
+  // `;
 
-  const Post = styled.div`
-    margin-bottom: -4px;
-  `;
+  // const Post = styled.div`
+  //   margin-bottom: -4px;
+  // `;
 
-  const Image = styled.img`
-    width: 100%;
-    height: 200px;
-  `;
+  // const Image = styled.img`
+  //   width: 100%;
+  //   height: 200px;
+  // `;
 
 
   // currently using useHistory
