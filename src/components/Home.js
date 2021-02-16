@@ -4,26 +4,9 @@ import { useHistory } from "react-router-dom";
 import { Container, Post, Image } from './SyledComonents';
 
 export default function Home({ posts, setCurrentPost }) {
-  // const Container = styled.div`
-  //   display: flex;
-  //   flex-flow: row wrap;
-  //   justify-content: center;
-  //   align-items: center;
-  // `;
-
-  // const Post = styled.div`
-  //   margin-bottom: -4px;
-  // `;
-
-  // const Image = styled.img`
-  //   width: 100%;
-  //   height: 200px;
-  // `;
-
-
-  // currently using useHistory
-  // could also use a NavLink
+  
   let history = useHistory();
+  
   const handleClick = (post) => {
     console.log('click', post);
     setCurrentPost(post);
