@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import 'firebase/storage';
 import UploadPage from './components/UploadPage';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { db } from './firebase/firebase';
 import Navbar from './components/Navbar.js';
 import Home from './components/Home.js';
@@ -55,24 +55,33 @@ export default function App() {
     })
   }, [])
 
+  let history = useHistory();
+  
+  const handleClick = (post) => {
+    console.log('click', post);
+    setCurrentPost(post);
+
+    history.push(`/${post.title}`);
+  }
+
   return (
     <div>
       <Navbar />
       <Switch>
         <Route exact path='/'>
-          <Home posts={posts} setCurrentPost={setCurrentPost} />
+          <Home posts={posts} setCurrentPost={setCurrentPost} handleClick={handleClick} />
         </Route>
         <Route exact path='/posters'>
-          <Posters posters={posters} />
+          <Posters posters={posters} handleClick={handleClick} />
         </Route>
         <Route exact path='/patterns'>
-          <Patterns patterns={patterns} />
+          <Patterns patterns={patterns} handleClick={handleClick} />
         </Route>
         <Route exact path='/apparel'>
-          <Apparel apparel={apparel} />
+          <Apparel apparel={apparel} handleClick={handleClick} />
         </Route>
         <Route exact path='/packaging'>
-          <Packaging packaging={packaging} />
+          <Packaging packaging={packaging} handleClick={handleClick} />
         </Route>
         <Route exact path='/upload'>
           <UploadPage />

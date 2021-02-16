@@ -1,18 +1,8 @@
 import React from 'react';
-// import styled from 'styled-components';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { Container, Post, Image } from './SyledComonents';
 
-export default function Home({ posts, setCurrentPost }) {
-  
-  let history = useHistory();
-  
-  const handleClick = (post) => {
-    console.log('click', post);
-    setCurrentPost(post);
-
-    history.push(`/${post.title}`);
-  }
+export default function Home({ posts, handleClick }) {
 
   return (
     <div>
@@ -29,26 +19,3 @@ export default function Home({ posts, setCurrentPost }) {
     </div>
   )
 }
-
-      // <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
-      //   {posts}
-      // </Masonry>
-// <h1>{post.title}</h1>
-// <p>{post.description}</p>
-      // <Masonry className='my-masonry-grid' columnClassName='my-masonry-grid_column'>
-      //   {
-      //     posts ? posts.map(post => (
-      //       <img src={post.src} alt={post.title} height='200px' />
-      //     ))
-      //     : null
-      //   }
-      // </Masonry>
-
-      // {
-      //   posts ? posts.map(post => (
-      //     <Item key={post.title}>
-      //       <Image src={post.src} alt={post.title} />
-      //     </Item>
-      //   ))
-      //   : null
-      // }
