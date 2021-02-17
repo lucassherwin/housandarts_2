@@ -1,6 +1,5 @@
 import React, { useEffect, useState} from 'react';
 import 'firebase/storage';
-import UploadPage from './components/UploadPage';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { db } from './firebase/firebase';
 import Navbar from './components/Navbar.js';
@@ -82,9 +81,6 @@ export default function App() {
         </Route>
         <Route exact path='/packaging'>
           <Packaging packaging={packaging} handleClick={handleClick} />
-        </Route>
-        <Route exact path='/upload'>
-          <UploadPage />
         </Route>
         <Route exact path='/:title'>
           <PostPage currentPost={currentPost} />
