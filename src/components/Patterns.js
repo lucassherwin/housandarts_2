@@ -1,15 +1,19 @@
 import React from 'react'
+import { Container, Post, Image } from './SyledComonents';
 
-export default function Patterns({ patterns }) {
+export default function Patterns({ patterns, handleClick }) {
   return (
     <div>
+      <Container>
       {
-        patterns.map(item => (
-          <div key={item.title}>
-            <img src={item.src} alt={item.title} />
-          </div>
+        patterns ? patterns.map(post => (
+          <Post key={post.title} onClick={() => handleClick(post)}>
+            <Image src={post.src} alt={post.title} />
+          </Post>
         ))
+        : null
       }
+      </Container>
     </div>
   )
 }

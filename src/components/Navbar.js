@@ -1,20 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+// import { NavLink } from 'react-router-dom';
+// import styled from 'styled-components';
+import { NavContainer, Nav } from './SyledComonents';
 
 export default function Navbar() {
-  const NavContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 2vw;
-  `;
-
-  const Nav = styled(NavLink)`
-    padding: 8px; 
-    text-decoration: none;
-    color: 'grey';
-  `;
+  
 
 return (
     <NavContainer>
